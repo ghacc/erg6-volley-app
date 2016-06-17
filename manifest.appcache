@@ -1,0 +1,26 @@
+CACHE MANIFEST
+# 2016-06-12:v1
+
+CACHE:
+# html
+index.html
+
+#style
+css/style.css
+
+# script
+script/lib/jquery-2.2.4.min.js
+script/model.js
+script/view.js
+script/controller.js
+
+# image
+favicon.ico
+img/backScoreboard.png
+img/backSetup.png
+img/placeholder.png
+
+#font
+font/MaterialIcons-Regular.ttf
+font/OpenSans-Regular.ttf
+font/Pacifico.ttf

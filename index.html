@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--Double clicking on banners@scoreboard page updates cache-->
+<html manifest="manifest.appcache">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Βόλλεϋ</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="animationCurtain"></div>
+    <div id="setupContainer">
+        <header>
+            <h1>ΑΡΧΙΚΟΠΟΙΗΣΗ</h1>
+        </header>
+        <main>
+            <div class="fields">
+                <div>
+                    <div>
+                        <img id="banner" alt="Σύμβολο Ομάδας" src="img/placeholder.png">
+                    </div>
+                    <div class="photoButtons">
+                        <span>Select banner photo:</span>
+                        <button id="selectPhoto" title="Choose photo"><i class="material-icons">photo_library</i></button>
+                        <button id="takePhoto" title="Take photo"><i class="material-icons">photo_camera</i></button>
+                    </div>
+                    <div class="inputs">
+                        <div>
+                            <input id="officialName" placeholder="Επίσημη ονομασία ομάδας" type="text" autocomplete="off">
+                        </div>
+                        <div>
+                            <input id="shortName" placeholder="Συντομογραφία ομάδας" type="text" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="navigation">
+                <button id="back" disabled="true">Πισω</button><button id="next">Επομενο</button>
+            </div>
+        </main>
+    </div>
+    <!--setupContainer-->
+
+    <div id="camera" data-disabled="true">
+        <video id="player"></video>
+        <button id="shootPhoto"><i class="material-icons">photo_camera</i></button>
+        <button id="cancel"><i class="material-icons">&#xE5CD;</i></button>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div id="scoreboardContainer">
+      <div class="setScoreContainer">
+        <div class="homeScore left">
+          <table>
+            <tr>
+              <td class="teamName" colspan="2">
+              </td>
+            </tr>
+            <tr>
+              <td class="teamScore" colspan="2">
+              </td>
+            </tr>
+            <tr>
+              <td><div class="timeoutIndicator"></div></td>
+              <td><div class="timeoutIndicator"></div></td>
+            </tr>
+          </table>
+        </div>
+        <div class="awayScore right">
+          <table>
+            <tr>
+              <td class="teamName" colspan="2">
+              </td>
+            </tr>
+            <tr>
+              <td class="teamScore" colspan="2">
+              </td>
+            </tr>
+            <tr>
+              <td><div class="timeoutIndicator"></div></td>
+              <td><div class="timeoutIndicator"></div></td>
+            </tr>
+          </table>
+        </div>
+      </div><!--setScoreContainer-->
+
+      <div id="gameScoreContainer">
+        <table>
+          <tr>
+            <th>SETS</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <div id="bannerContainer">
+        <div>
+            <div id="homeBanner"></div>
+            <div id="awayBanner"></div>
+        </div>
+        <span class="message pulse">New match?</span>
+      </div>
+
+
+    </div>
+
+    <div id="timer"><i class="material-icons">timer</i><span id="seconds">60</span></div>
+
+    <!-- Javascript Files -->
+    <script src="script/lib/jquery-2.2.4.min.js"></script>
+    <script src="script/model.js" charset="utf-8"></script>
+    <script src="script/view.js" charset="utf-8"></script>
+    <script src="script/controller.js" charset="utf-8"></script>
+
+</body>
+
+</html>
