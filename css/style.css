@@ -590,7 +590,7 @@ input:hover, input:focus {
         font-size: 4vmin;
     }
 }
-@media screen and (max-height: 250px) {
+@media screen and (max-height: 280px) {
     #setupContainer main {
         top: 10%;
     }
@@ -601,7 +601,7 @@ input:hover, input:focus {
         font-size: 7vh;
     }
     input, .navigation button {
-        font-size: 9vh;
+        font-size: 8vh;
         border-radius: 1px;
     }
     .photoButtons button {
