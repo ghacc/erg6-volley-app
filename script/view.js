@@ -219,7 +219,7 @@ var volley = (function(app) {
 
 	});
 
-	$bannerContainer.on("dbclick", () => window.applicationCache.update());
+	$bannerContainer.on("dblclick", () => window.applicationCache.update());
 
 	$newMatch.on("click", () => app.controller.onNewMatch());
 
