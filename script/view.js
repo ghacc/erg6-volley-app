@@ -17,7 +17,7 @@ var volley = (function(app) {
 		$shortName = $("#shortName"),
 		$selectPhoto = $("#selectPhoto"),
 		$takePhoto = $("#takePhoto"),
-		$camera = $("#camera"),
+		$camera = $("#cam"),
 		$shootPhoto = $("#shootPhoto"),
 		$cancel = $("#cancel"),
 		$player = $("#player"),
@@ -54,6 +54,7 @@ var volley = (function(app) {
 		});
 		$animationCurtain.addClass("disappearAppear");
 	}
+
 	function dance() {
 		$bannerContainer.on("animationend webkitAnimationEnd oAnimationEnd", function() {
 			$(this).removeClass("dance");
@@ -89,6 +90,12 @@ var volley = (function(app) {
 	/*======================================================
 	 * EVENT HANDLERS
 	 ======================================================*/
+
+	 document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    console.log(navigator.camera);
+		document.please = navigator.camera;
+}
 
 	// Android let's you take a photo when you are selecting an image too.
 	$selectPhoto.on("click", () => {
@@ -156,7 +163,21 @@ var volley = (function(app) {
 		}
 
 		$camera.removeAttr("data-disabled");
-		navigator.getMedia({
+
+		if (navigator.camera) {
+			navigator.camera.getPicture((data) => {
+				$banner.attr("src", "data:image/jpeg;base64," + data);
+				$camera.attr("data-disabled", "true");
+			}, (error) => {
+				console.log(error);
+				$camera.attr("data-disabled", "true");
+			}, {
+				destinationType: navigator.camera.DestinationType.DATA_URL,
+				targetWidth: 600,
+				targetHeight: 600
+			})
+		} else {
+			navigator.getMedia({
 				video: true,
 				audio: false
 			},
@@ -166,6 +187,7 @@ var volley = (function(app) {
 				console.log("Could not get access to camera.");
 				$camera.attr("data-disabled", "true");
 			});
+		}
 	});
 
 	$(window).on("keypress", (e) => {
