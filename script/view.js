@@ -54,6 +54,7 @@ var volley = (function(app) {
 		});
 		$animationCurtain.addClass("disappearAppear");
 	}
+
 	function dance() {
 		$bannerContainer.on("animationend webkitAnimationEnd oAnimationEnd", function() {
 			$(this).removeClass("dance");
@@ -156,6 +157,20 @@ var volley = (function(app) {
 		}
 
 		$camera.removeAttr("data-disabled");
+
+		if (navigator.camera) {
+			navigator.camera.getPicture((data) => {
+				$banner.attr("src", "data:image/jpeg;base64," + data);
+				$camera.attr("data-disabled", "true");
+			}, (error) => {
+				console.log(error);
+				$camera.attr("data-disabled", "true");
+			}, {
+				destinationType: navigator.camera.DestinationType.DATA_URL,
+				targetWidth: 600,
+				targetHeight: 600
+			})
+		}
 		navigator.getMedia({
 				video: true,
 				audio: false
