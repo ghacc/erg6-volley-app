@@ -233,10 +233,10 @@ input:hover, input:focus {
  * CAMERA
 =============================================*/
 
-#camera[data-disabled="true"] {
+#cam[data-disabled="true"] {
     display: none;
 }
-#camera, #player {
+#cam, #player {
     position: absolute;
     top: 0;
     left: 0;
@@ -593,6 +593,7 @@ input:hover, input:focus {
 @media screen and (max-height: 280px) {
     #setupContainer main {
         top: 10%;
+        min-height: 220px;
     }
     header, #banner {
         display: none;
@@ -613,5 +614,33 @@ input:hover, input:focus {
     }
     .navigation {
         bottom: 10vh;
+    }
+}
+@media screen and (max-height: 190px) {
+    body {
+      position: static;
+      height: 100%;
+    }
+    #setupContainer {
+      position: static;
+    }
+    header, #banner {
+        display: none;
+    }
+    .photoButtons span {
+        font-size: 1rem;
+    }
+    input, .navigation button {
+        font-size: 1.2rem;
+    }
+    .photoButtons button {
+        width: 2rem;
+        height: 2rem;
+    }
+    .photoButtons i {
+        font-size: 1rem;
+    }
+    .navigation {
+      position: relative;
     }
 }

@@ -6,6 +6,8 @@ var volley = (function(app) {
 	let SET_PATTERN = [80, 200, 80, 200, 120, 200, 600, 0];
 	let TIMEOUT_PATTERN = [600, 0];
 
+	let iid;
+
 	// Elements
 	let
 		$animationCurtain = $(".animationCurtain"),
@@ -73,29 +75,27 @@ var volley = (function(app) {
 	}
 
 	function startTimer() {
-		let TIMEOUT_SECONDS = 1;
+		let TIMEOUT_SECONDS = 60;
 		$seconds.text(TIMEOUT_SECONDS);
 		$timer.show();
-		let iid = setInterval(() => {
+		iid = setInterval(() => {
 			TIMEOUT_SECONDS--;
 			$seconds.text(TIMEOUT_SECONDS);
 			if (TIMEOUT_SECONDS < 0) {
-				clearInterval(iid);
-				$timer.hide();
-				app.controller.onTimeoutEnd();
+				clearTimeout(iid);
 			}
 		}, 1000);
+	}
+
+	function clearTimeout(iid) {
+		clearInterval(iid);
+		$timer.hide();
+		app.controller.onTimeoutEnd();
 	}
 
 	/*======================================================
 	 * EVENT HANDLERS
 	 ======================================================*/
-
-	 document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    console.log(navigator.camera);
-		document.please = navigator.camera;
-}
 
 	// Android let's you take a photo when you are selecting an image too.
 	$selectPhoto.on("click", () => {
@@ -164,21 +164,10 @@ function onDeviceReady() {
 
 		$camera.removeAttr("data-disabled");
 
-		if (navigator.camera) {
-			navigator.camera.getPicture((data) => {
-				$banner.attr("src", "data:image/jpeg;base64," + data);
-				$camera.attr("data-disabled", "true");
-			}, (error) => {
-				console.log(error);
-				$camera.attr("data-disabled", "true");
-			}, {
-				destinationType: navigator.camera.DestinationType.DATA_URL,
-				targetWidth: 600,
-				targetHeight: 600
-			})
-		} else {
-			navigator.getMedia({
-				video: true,
+		navigator.getMedia({
+				video: {
+					optional: [{facingMode: "environment"}]
+				},
 				audio: false
 			},
 			handleSuccess,
@@ -187,7 +176,6 @@ function onDeviceReady() {
 				console.log("Could not get access to camera.");
 				$camera.attr("data-disabled", "true");
 			});
-		}
 	});
 
 	$(window).on("keypress", (e) => {
@@ -244,6 +232,11 @@ function onDeviceReady() {
 	$bannerContainer.on("dblclick", () => window.applicationCache.update());
 
 	$newMatch.on("click", () => app.controller.onNewMatch());
+
+	// Skip timeouts by clicking on timer
+	$timer.on("click", function() {
+		clearTimeout(iid);
+	});
 
 	// View's public api
 
