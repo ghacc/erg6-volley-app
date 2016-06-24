@@ -593,7 +593,6 @@ input:hover, input:focus {
 @media screen and (max-height: 280px) {
     #setupContainer main {
         top: 10%;
-        min-height: 220px;
     }
     header, #banner {
         display: none;
