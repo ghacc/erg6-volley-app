@@ -33,13 +33,13 @@
 @font-face {
   font-family: "Open Sans";
   font-style: normal;
-  font-weight: 40;
+  font-weight: 400;
   src: local("Open Sans"), url("../font/OpenSans-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: Pacifico;
   font-style: normal;
-  font-weight: 40;
+  font-weight: 400;
   src: local("Pacifico"), url("../font/Pacifico.ttf") format("truetype");
 }
 html {
@@ -105,7 +105,7 @@ header h1 {
     vertical-align: middle;
     font-size: 8vmin;
     text-transform: uppercase;
-    text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
+    text-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5);
 }
 
 /*=============================================
@@ -167,7 +167,7 @@ header h1 {
 }
 .inputs {
     margin: 4vmin 0;
-    line-height: 0px;
+    line-height: 0;
 }
 input {
     font-family: 'Open Sans', sans-serif;
@@ -490,7 +490,7 @@ input:hover, input:focus {
 }
 #timer> span {
     bottom: 20vh;
-    font-size: 30vh;
+    font-size: 25vh;
     font-family: Pacifico, cursive;
 }
 
